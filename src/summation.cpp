@@ -30,6 +30,13 @@
 
 #include "list.h"
 
+#include <QGuiApplication>
+#include <QQuickView>
+#include <QQmlContext>
+#include <QStandardPaths>
+#include <QDir>
+#include <QFile>
+
 #ifdef QT_QML_DEBUG
 #include <QtQuick>
 #endif
@@ -48,15 +55,23 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    QGuiApplication * q_application = SailfishApp :: application ( argc, argv );
-    QQuickView * q_view = SailfishApp :: createView ( );
+    QGuiApplication *q_application = SailfishApp::application(argc, argv);
+    q_application->setOrganizationName("ufas");
+    QQuickView *q_view = SailfishApp::createView();
 
-    List list;
-    q_view -> rootContext ( ) -> setContextProperty ( "list", &list );
+    QString data = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 
-    q_view -> setSource ( SailfishApp :: pathTo ( "qml/Summation.qml" ));
-    q_view -> showFullScreen ( );
+    QDir dir(data);
+    dir.mkpath(dir.absolutePath());
+    QString file = dir.absoluteFilePath("data.sum");
 
-    return q_application -> exec ( );
+    List list(file);
+    list.loadFile();
+    q_view->rootContext()->setContextProperty("list", &list);
+
+    q_view->setSource( SailfishApp::pathTo( "qml/Summation.qml" ));
+    q_view->showFullScreen();
+
+    return q_application->exec();
 }
 

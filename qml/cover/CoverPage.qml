@@ -32,21 +32,34 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
-    Label {
-        id: label
-        anchors.centerIn: parent
-        text: qsTr("My Cover")
-    }
+    property int showDigits: 2
 
-    CoverActionList {
-        id: coverAction
+    SilicaListView {
+        anchors.fill: parent
 
-        CoverAction {
-            iconSource: "image://theme/icon-cover-next"
+        header : PageHeader {
+                width: parent.width
+                title: "∑ = " + list.value.toFixed(showDigits)
         }
 
-        CoverAction {
-            iconSource: "image://theme/icon-cover-pause"
+        model: list
+
+        delegate: BackgroundItem {
+            x: Theme.paddingSmall
+            width: ListView.view.width-2*Theme.paddingSmall
+            height: Math.max(lblname.height, lblvalue.height)
+            Label {
+                id: lblname
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                text: name
+            }
+            Label {
+                id: lblvalue
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                text: value.toFixed(showDigits)
+            }
         }
     }
 }

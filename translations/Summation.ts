@@ -2,20 +2,25 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>CoverPage</name>
+    <name>EditItem</name>
     <message>
-        <source>My Cover</source>
+        <location filename="../qml/pages/EditItem.qml" line="16"/>
+        <location filename="../qml/pages/EditItem.qml" line="17"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/EditItem.qml" line="24"/>
+        <location filename="../qml/pages/EditItem.qml" line="25"/>
+        <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>SecondPage</name>
+    <name>ListView</name>
     <message>
-        <source>Nested Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item</source>
+        <location filename="../qml/pages/ListView.qml" line="19"/>
+        <source>Add Entry</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -12,20 +12,26 @@
 # The name of your application
 TARGET = Summation
 
-CONFIG += sailfishapp
+QT += xml
 
-SOURCES += src/Summation.cpp \
+CONFIG += sailfishapp
+CONFIG += warn_on
+CONFIG += c++11
+
+SOURCES +=  \
+    src/summation.cpp \
     src/list.cpp
 
-OTHER_FILES += qml/Summation.qml \
-    qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
+OTHER_FILES += \
+    Summation.desktop \
     rpm/Summation.changes.in \
     rpm/Summation.spec \
     rpm/Summation.yaml \
     translations/*.ts \
-    Summation.desktop
+    qml/Summation.qml \
+    qml/cover/CoverPage.qml \
+    qml/pages/EditItem.qml \
+    qml/pages/ListView.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
