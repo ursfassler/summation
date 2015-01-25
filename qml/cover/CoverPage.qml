@@ -45,18 +45,19 @@ CoverBackground {
         model: list
 
         delegate: BackgroundItem {
-            x: Theme.paddingSmall
-            width: ListView.view.width-2*Theme.paddingSmall
+            width: parent.width
             height: Math.max(lblname.height, lblvalue.height)
             Label {
                 id: lblname
                 anchors.left: parent.left
+                anchors.leftMargin: Theme.paddingSmall
                 anchors.verticalCenter: parent.verticalCenter
                 text: name
             }
             Label {
                 id: lblvalue
                 anchors.right: parent.right
+                anchors.rightMargin: Theme.paddingSmall
                 anchors.verticalCenter: parent.verticalCenter
                 text: value.toFixed(showDigits)
             }

@@ -2,9 +2,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 //TODO let user decide about visual number precission/format
-//TODO let user rename list
-//TODO let user delete items
-//TODO let user modify items
 
 Page {
     property int showDigits: 2
@@ -12,7 +9,11 @@ Page {
     id: page
 
     SilicaListView {
+        id: listView
         anchors.fill: parent
+        property Item contextMenu : contextMenuComponent.createObject(listView)
+
+        VerticalScrollDecorator {}
 
         PullDownMenu {
             MenuItem {
@@ -27,32 +28,59 @@ Page {
         }
 
         header : PageHeader {
-                width: parent.width
-                title: "∑ = " + list.value.toFixed(showDigits)
+            width: parent.width
+            title: "∑ = " + list.value.toFixed(showDigits)
         }
 
         model: list
 
-        delegate: BackgroundItem {
-            x: Theme.paddingLarge
-            width: ListView.view.width-2*Theme.paddingLarge
-            height: Theme.itemSizeSmall
-            Label {
-                anchors.left: parent.left
-                anchors.verticalCenter: parent.verticalCenter
-                text: name
+        delegate: Item {
+            id: myListItem
+            property bool menuOpen: listView.contextMenu != null && listView.contextMenu.parent === myListItem
+
+            width: ListView.view.width
+            height: menuOpen ? listView.contextMenu.height + contentItem.height : contentItem.height
+
+            BackgroundItem {
+                id: contentItem
+                width: parent.width
+                Label {
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.paddingLarge
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: name
+                    color: myListItem.highlighted ? Theme.highlightColor
+                                                : Theme.primaryColor
+                }
+                Label {
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.paddingLarge
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: value.toFixed(showDigits)
+                }
+                onClicked: {
+                    var dialog = pageStack.push("EditItem.qml", {name: name, value: value});
+                    dialog.accepted.connect(function() {
+                        name = dialog.name;
+                        value = dialog.value;
+                    })
+                }
+                onPressAndHold: {
+                    listView.contextMenu.current = model
+                    listView.contextMenu.show(myListItem)
+                }
             }
-            Label {
-                anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter
-                text: value.toFixed(showDigits)
-            }
-            onClicked: {
-                var dialog = pageStack.push("EditItem.qml", {name: name, value: value});
-                dialog.accepted.connect(function() {
-                    name = dialog.name;
-                    value = dialog.value;
-                })
+        }
+        Component {
+            id: contextMenuComponent
+            ContextMenu {
+                property QtObject current
+                MenuItem {
+                    text: qsTr("Delete")
+                    onClicked: {
+                        listView.model.remove(current.index)
+                    }
+                }
             }
         }
     }

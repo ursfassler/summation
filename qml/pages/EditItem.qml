@@ -5,6 +5,8 @@ Dialog {
     property string name
     property real value
 
+    id: dialog
+
     Column {
         width: parent.width
 
@@ -16,7 +18,7 @@ Dialog {
             placeholderText: qsTr("Name")
             label:  qsTr("Name")
             text: name
-            //TODO when pressed enter, switch to valueField
+            EnterKey.onClicked: valueField.focus = true
         }
         TextField {
             id: valueField
@@ -27,7 +29,7 @@ Dialog {
             inputMethodHints: Qt.ImhFormattedNumbersOnly
             horizontalAlignment: TextInput.AlignRight
             validator: DoubleValidator {}
-            //TODO when pressed enter, accept
+            EnterKey.onClicked: dialog.accept()
         }
     }
 

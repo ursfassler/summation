@@ -21,7 +21,7 @@ QHash<int, QByteArray> List::roleNames() const
     return roles;
 }
 
-int List::rowCount(const QModelIndex &parent) const
+int List::rowCount(const QModelIndex &) const
 {
     qDebug() << "mData.count() = " << mData.count();
     return mData.count();
@@ -42,7 +42,7 @@ QVariant List::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QVariant List::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant List::headerData(int, Qt::Orientation, int role) const
 {
     return roleNames()[role];
 }
@@ -72,7 +72,7 @@ bool List::setData(const QModelIndex &index, const QVariant &value, int role)
     }
 }
 
-Qt::ItemFlags List::flags(const QModelIndex &index) const
+Qt::ItemFlags List::flags(const QModelIndex &) const
 {
     return Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled;
 }
@@ -85,6 +85,14 @@ void List::add(const QString &name, qreal value)
     valueChanged();
 }
 
+void List::remove(int index)
+{
+    beginRemoveRows(QModelIndex(), index, index);
+    mData.removeAt(index);
+    endRemoveRows();
+    valueChanged();
+}
+
 qreal List::value() const
 {
     qreal sum = 0;
@@ -93,9 +101,6 @@ qreal List::value() const
     }
     return sum;
 }
-
-
-
 
 
 

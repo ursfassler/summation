@@ -27,6 +27,7 @@ public:
     Qt::ItemFlags flags ( const QModelIndex & index ) const;
 
     Q_SCRIPTABLE void add(const QString &name, qreal value);
+    Q_SCRIPTABLE void remove(int index);
 
     qreal value() const;
 

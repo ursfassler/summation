@@ -4,14 +4,14 @@
 <context>
     <name>EditItem</name>
     <message>
-        <location filename="../qml/pages/EditItem.qml" line="16"/>
-        <location filename="../qml/pages/EditItem.qml" line="17"/>
+        <location filename="../qml/pages/EditItem.qml" line="18"/>
+        <location filename="../qml/pages/EditItem.qml" line="19"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/EditItem.qml" line="24"/>
-        <location filename="../qml/pages/EditItem.qml" line="25"/>
+        <location filename="../qml/pages/EditItem.qml" line="26"/>
+        <location filename="../qml/pages/EditItem.qml" line="27"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
@@ -19,8 +19,13 @@
 <context>
     <name>ListView</name>
     <message>
-        <location filename="../qml/pages/ListView.qml" line="19"/>
+        <location filename="../qml/pages/ListView.qml" line="20"/>
         <source>Add Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ListView.qml" line="79"/>
+        <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
