@@ -34,7 +34,6 @@ int main(int argc, char *argv[])
 {
     QGuiApplication *app = SailfishApp::application(argc, argv);
     app->setOrganizationName("ufas");
-    app->setApplicationVersion("0.1");
     QQuickView *view = SailfishApp::createView();
 
     QString data = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
@@ -47,7 +46,7 @@ int main(int argc, char *argv[])
     list.loadFile();
     view->rootContext()->setContextProperty("list", &list);
 
-    view->setSource( SailfishApp::pathTo( "qml/Summation.qml" ));
+    view->setSource( SailfishApp::pathTo( "qml/summation.qml" ));
     view->showFullScreen();
 
     return app->exec();

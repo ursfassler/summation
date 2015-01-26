@@ -40,13 +40,11 @@ QHash<int, QByteArray> List::roleNames() const
 
 int List::rowCount(const QModelIndex &) const
 {
-    qDebug() << "mData.count() = " << mData.count();
     return mData.count();
 }
 
 QVariant List::data(const QModelIndex &index, int role) const
 {
-    qDebug() << "data of " << index.row();
     switch (role) {
     case RoleName:
         return mData[index.row()].first;
@@ -66,7 +64,6 @@ QVariant List::headerData(int, Qt::Orientation, int role) const
 
 bool List::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    qDebug() << "setData " << mData.count() << " " << index.row() << " " << role << " " << value;
     switch (role) {
     case RoleName: {
         mData[index.row()].first = value.toString();
@@ -123,18 +120,16 @@ qreal List::value() const
 
 bool List::loadFile()
 {
-    qDebug() << "load file " << mFilename;
-
     QFile file(mFilename);
     if (!file.open(QIODevice::ReadOnly)){
-        qDebug() << "could not open file: " << file.errorString();
+        qCritical() << "could not open file: " << file.errorString();
         return false;
     }
 
     QDomDocument doc;
 
     if (!doc.setContent(&file)) {
-        qDebug() << "could not parse file";
+        qCritical() << "could not parse file";
         file.close();
         return false;
     }
@@ -184,8 +179,6 @@ bool List::loadFile()
 
 bool List::saveFile()
 {
-    qDebug() << "save file";
-
     QDomDocument doc;
 
     QDomElement root = doc.createElement("summation");
@@ -199,7 +192,7 @@ bool List::saveFile()
 
     QFile file(mFilename);
     if (!file.open(QIODevice::WriteOnly)){
-        qDebug() << "could not open file: " << file.errorString();
+        qCritical() << "could not open file: " << file.errorString();
         return false;
     }
 

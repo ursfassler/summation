@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = Summation
+TARGET = summation
 
 QT += xml
 
@@ -23,20 +23,18 @@ SOURCES +=  \
     src/list.cpp
 
 OTHER_FILES += \
-    Summation.desktop \
-    rpm/Summation.changes.in \
-    rpm/Summation.spec \
-    rpm/Summation.yaml \
-    translations/*.ts \
-    qml/Summation.qml \
+    summation.desktop \
+    rpm/summation.changes.in \
+    rpm/summation.spec \
+    rpm/summation.yaml \
     qml/cover/CoverPage.qml \
     qml/pages/EditItem.qml \
-    qml/pages/ListView.qml
+    qml/pages/ListView.qml \
+    qml/summation.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
-TRANSLATIONS += translations/Summation-de.ts
 
 HEADERS += \
     src/list.h
