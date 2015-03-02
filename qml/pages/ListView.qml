@@ -34,6 +34,12 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                text: qsTr("Reduce")
+                onClicked: {
+                    var dialog = pageStack.push("Reduce.qml")
+                }
+            }
+            MenuItem {
                 text: qsTr("Add Entry")
                 onClicked: {
                     var dialog = pageStack.push("EditItem.qml")

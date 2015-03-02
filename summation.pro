@@ -30,7 +30,8 @@ OTHER_FILES += \
     qml/cover/CoverPage.qml \
     qml/pages/EditItem.qml \
     qml/pages/ListView.qml \
-    qml/summation.qml
+    qml/summation.qml \
+    qml/pages/Reduce.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

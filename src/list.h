@@ -48,6 +48,9 @@ public:
 
     qreal value() const;
 
+    Q_SCRIPTABLE void clear();
+    Q_SCRIPTABLE void replace(QString text, qreal value);
+
 signals:
     void valueChanged();
 

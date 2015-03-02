@@ -71,14 +71,14 @@ bool List::setData(const QModelIndex &index, const QVariant &value, int role)
         return true;
     }
     case RoleValue: {
-            bool ok = false;
-            qreal rval = value.toReal(&ok);
-            if(ok){
-                mData[index.row()].second = rval;
-                dataChanged(index, index);
-                valueChanged();
-            }
-            return ok;
+        bool ok = false;
+        qreal rval = value.toReal(&ok);
+        if(ok){
+            mData[index.row()].second = rval;
+            dataChanged(index, index);
+            valueChanged();
+        }
+        return ok;
     }
     default: {
         return false;
@@ -104,6 +104,28 @@ void List::remove(int index)
     beginRemoveRows(QModelIndex(), index, index);
     mData.removeAt(index);
     endRemoveRows();
+    valueChanged();
+}
+
+void List::clear()
+{
+    beginRemoveRows(QModelIndex(), 0, mData.count()-1);
+    mData.clear();
+    endRemoveRows();
+
+    valueChanged();
+}
+
+void List::replace(QString text, qreal value)
+{
+    beginRemoveRows(QModelIndex(), 0, mData.count()-1);
+    mData.clear();
+    endRemoveRows();
+
+    beginInsertRows(QModelIndex(), 0, 0);
+    mData.insert(0, Entry(text, value));
+    endInsertRows();
+
     valueChanged();
 }
 
