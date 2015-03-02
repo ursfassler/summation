@@ -33,7 +33,7 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication *app = SailfishApp::application(argc, argv);
-    app->setOrganizationName("ufas");
+    app->setOrganizationName(QString());
     QQuickView *view = SailfishApp::createView();
 
     QString data = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     list.loadFile();
     view->rootContext()->setContextProperty("list", &list);
 
-    view->setSource( SailfishApp::pathTo( "qml/summation.qml" ));
+    view->setSource( SailfishApp::pathTo( "qml/harbour-summation.qml" ));
     view->showFullScreen();
 
     return app->exec();

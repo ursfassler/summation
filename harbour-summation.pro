@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = summation
+TARGET = harbour-summation
 
 QT += xml
 
@@ -23,15 +23,16 @@ SOURCES +=  \
     src/list.cpp
 
 OTHER_FILES += \
-    summation.desktop \
-    rpm/summation.changes.in \
-    rpm/summation.spec \
-    rpm/summation.yaml \
     qml/cover/CoverPage.qml \
     qml/pages/EditItem.qml \
     qml/pages/ListView.qml \
-    qml/summation.qml \
-    qml/pages/Reduce.qml
+    qml/pages/Reduce.qml \
+    harbour-summation.desktop \
+    harbour-summation.png \
+    rpm/harbour-summation.yaml \
+    rpm/harbour-summation.spec \
+    qml/harbour-summation.qml \
+    rpm/harbour-summation.changes.in
 
 # to disable building translations every time, comment out the
 # following CONFIG line
