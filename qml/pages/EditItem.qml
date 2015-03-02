@@ -42,7 +42,7 @@ Dialog {
             width: parent.width
             placeholderText: qsTr("Value")
             label:  qsTr("Value")
-            text: value.toFixed(2)
+            text: value !== 0 ? value.toFixed(2) : ""
             inputMethodHints: Qt.ImhFormattedNumbersOnly
             horizontalAlignment: TextInput.AlignRight
             validator: DoubleValidator {}
@@ -55,7 +55,7 @@ Dialog {
     }
 
     onDone: {
-        if (result == DialogResult.Accepted) {
+        if (result === DialogResult.Accepted) {
             name = nameField.text
             value = Number(valueField.text.replace(',','.'));   // localization seems to be broken
         }
